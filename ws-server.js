@@ -13,7 +13,10 @@ const pub = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');
 // Отдельное подключение для subscriber
 const sub = new Redis(process.env.REDIS_URL || 'redis://localhost:6379');
 
-const wss = new WebSocket.Server({ port: 4001 });
+const PORT = process.env.PORT || 4001;
+server.listen(PORT, () => {
+  console.log(`WebSocket сервер запущен на порту ${PORT}`);
+});
 
 // Каналы для pub/sub
 const LOBBY_CHANNEL = 'lobby-events';
